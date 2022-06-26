@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup as BS
 import requests
 import telebot
 from telebot import types
-token = 'YOUR_TOKEN'
+token = '5395944286:AAHYK26CIWrE9FrAJe5YE0_pYfef9NA4QoM'
 bot = telebot.TeleBot(token)
 
 
@@ -29,7 +29,9 @@ def text(message):
         bot.send_message(message.chat.id, "Я не могу обработать что вы написали, нажмите кнопку 🛡Информация, чтобы узнать о функционале бота.")
 
 def get_user_id(message):
-    if len(message.text) < 18:
+    if message.text == '🛡Информация':
+        bot.send_message(message.chat.id, 'Информация о боте:\nБот находит аватарку пользователя в дискорде по введеному ID.\nID искомого пользователя можно найти нажав правую кнопку мыши по пользователю, после нужно нажать на конпку \"Копировать ID\".')
+    elif len(message.text) < 18:
         msg = bot.send_message(message.chat.id,'Введите действительный ID пользователя')
         bot.register_next_step_handler(msg, get_user_id)
     else:
